@@ -1,0 +1,98 @@
+fileFormatVersion: 2
+guid: 4642d688f1b70d945a9a55bfdc7696f3
+timeCreated: 1456921807
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: healthbar_0
+    21300002: healthbar_1
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: healthbar_0
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 648
+        width: 1542
+        height: 314
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -447, y: -113}
+        - {x: -425, y: -91}
+        - {x: -424, y: -91}
+        - {x: -402, y: -69}
+        - {x: -401, y: -69}
+        - {x: -391, y: -59}
+        - {x: 769, y: -59}
+        - {x: 771, y: -58}
+        - {x: 771, y: 157}
+        - {x: -771, y: 157}
+        - {x: -771, y: -157}
+        - {x: -492, y: -157}
+        - {x: -448, y: -113}
+    - name: healthbar_1
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 391
+        width: 1484
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -742, y: 79}
+        - {x: -742, y: -79}
+        - {x: 742, y: -79}
+        - {x: 742, y: 79}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
