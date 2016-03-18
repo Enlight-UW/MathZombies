@@ -19,7 +19,7 @@ public class UpdateNumberHandler : MonoBehaviour {
 	}
 
 	public void UpdateNumbers(int updateNumber) {
-		string url = "http://localhost:8081/updateNumbers/" + updateNumber;
+		string url = "http://192.81.208.150/updateNumbers/" + updateNumber;
 		WWW www = new WWW (url);
 		StartCoroutine(WaitForRequest(www));
 	}
