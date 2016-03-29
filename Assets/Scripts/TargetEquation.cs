@@ -13,7 +13,7 @@ public class TargetEquation : MonoBehaviour {
     private string[] strings;
     private int index;
     //*/
-    private UpdateNumberHandler numHandeler;
+	private UpdateNumberHandler numHandler;
     private BarScript bar;
     
 
@@ -23,7 +23,7 @@ public class TargetEquation : MonoBehaviour {
         //numHandeler =  GameObject.Find("/UpdateNumberHandeler").GetComponent<UpdateNumberHandler>();
         bar = obj.GetComponent<BarScript>();
         obj = GameObject.Find("/UpdateNumberHandler");
-        numHandeler = obj.GetComponent<UpdateNumberHandler>();
+        numHandler = obj.GetComponent<UpdateNumberHandler>();
         textField.text = " ";
         /*//
         strings = new string[3];
@@ -33,13 +33,13 @@ public class TargetEquation : MonoBehaviour {
         cycleCount = 0;
         index = 0;
         //*/
-        numHandeler.UpdateNumbers(10);        
+        numHandler.UpdateNumbers(4);        
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if ( !bar.IsGameOver() )
-            textField.text = numHandeler.term1 + " + " + numHandeler.term2 + " = ?";
+            textField.text = numHandler.term1 + " + " + numHandler.term2 + " = ?";
         else
             textField.text = "Game Over";
 	    /*//
