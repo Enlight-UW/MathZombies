@@ -18,8 +18,6 @@ public class BarScript : MonoBehaviour {
         fillAmount = 1;
         healthMax = 5;
         health = healthMax;
-        DamagePlayer();
-        DamagePlayer();
     }
 	
 	// Update is called once per frame
@@ -27,6 +25,9 @@ public class BarScript : MonoBehaviour {
         HandleBar();
         if (health <= 0)
             EndGame();
+
+        if (!gameOver && Input.GetKeyDown(KeyCode.Backspace))
+            DamagePlayer();
 
 
         if ( gameOver && Input.GetKeyDown(KeyCode.Return) )
