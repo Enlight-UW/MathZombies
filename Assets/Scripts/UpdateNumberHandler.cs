@@ -10,7 +10,6 @@ public class UpdateNumberHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		UpdateNumbers (10);
 	}
 	
 	// Update is called once per frame
