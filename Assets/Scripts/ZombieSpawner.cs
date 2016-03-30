@@ -4,41 +4,41 @@ using System.Collections;
 public class ZombieSpawner : MonoBehaviour {
 
 
-    // z goes from 0 to -18 or so
-    // x goes from 0 
-
     public int maxZombies = 20;
     public GameObject zombie;
-    public float spawnTime = 3f;
-    public float x = 0f;
-    public float y = 0f;
-    public float z = 0f;
+    public int spawnTime = 10;
 
-    public Vector3[] spawnPoints = new Vector3[5];
-  
+    // starting position of the first zombie
+    public Vector3 pos;
 
-    //private Vector3 originPosition;
 
     // Use this for initialization
     void Start()
     {
 
-        spawnPoints[0] = new Vector3(0, 0, -10);
-        spawnPoints[1] = new Vector3(23, 4, 5);
-        spawnPoints[2] = new Vector3(-18, 0, -13);
-        spawnPoints[3] = new Vector3(0, 0, 16);
-        spawnPoints[4] = new Vector3(10, 2, -5);
-
-        InvokeRepeating("Spawn", spawnTime, spawnTime);
+        pos = new Vector3(0, 0, 20);
+        
+        // make this depend on if the zombie has hit the player OR if a player has killed the right zombie
+        InvokeRepeating("Spawn", 0, spawnTime);
     }
 
     void Spawn()
     {
 
-        int spawnPointIndex = Random.Range(0, 4);
-        Vector3 randomPosition = spawnPoints[spawnPointIndex];
-
-        Instantiate(zombie, randomPosition, Quaternion.Euler(0, 0, 0));
+        for (int i = 0; i < 5; i++)
+        {
+            Instantiate(zombie, pos, Quaternion.Euler(0, 0, 0));
+            pos = rotate(pos);
+        }
 
     }
+
+    Vector3 rotate(Vector3 v)
+    {
+        return Quaternion.Euler(0, 72, 0) * v;
+    }
+
+    
+
+
 }
