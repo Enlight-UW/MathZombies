@@ -30,6 +30,14 @@ public class UpdateNumberHandler : MonoBehaviour {
             Destroy(zombies[i]);
         }
 
+        // remove all current arrows
+        GameObject[] arrows = GameObject.FindGameObjectsWithTag("Arrow");
+
+        for (int i = 0; i < arrows.Length; i++)
+        {
+            Destroy(arrows[i]);
+        }
+
         string url = "http://192.81.208.150/updateNumbers/" + updateNumber;
 		WWW www = new WWW (url);
 		StartCoroutine(WaitForRequest(www));
