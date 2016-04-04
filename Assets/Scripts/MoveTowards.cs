@@ -3,8 +3,13 @@ using System.Collections;
 
 public class MoveTowards : MonoBehaviour {
 
-    public Transform target;
+    private Transform target;
     public float speed = 2;
+
+    void Start()
+    {
+        target = GameObject.Find("/CardboardMain/Collision").transform;
+    }
    
     // Update is called once per frame
     void Update() {

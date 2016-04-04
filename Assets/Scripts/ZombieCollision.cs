@@ -3,9 +3,17 @@ using System.Collections;
 
 public class ZombieCollision : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	}
+    // reference to health bar
+    BarScript health;
+
+    // update number handler
+    UpdateNumberHandler updateNumHandler;
+
+    // Use this for initialization
+    void Start () {
+        updateNumHandler = GameObject.Find("/UpdateNumberHandler").GetComponent<UpdateNumberHandler>();
+        health = GameObject.Find("/Canvas/Health Bar").GetComponent<BarScript>();
+    }
 		
 	// Update is called once per frame
 	void Update () {
@@ -15,6 +23,13 @@ public class ZombieCollision : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		if(other.gameObject.tag == "Enemy")
-			Destroy(other.gameObject);    
+        {
+            // now spawn again
+            updateNumHandler.UpdateNumbers(UpdateNumberHandler.NUM_RAND_ZOMBIES);
+            Debug.Log("Update Numbers from zombie collision!");
+
+            // damage player
+            health.DamagePlayer();
+        }
 	}
 }

@@ -7,9 +7,13 @@ public class UpdateNumberHandler : MonoBehaviour {
 	public int term2;
 	public int sum;
 	public int[] randomNum;
+    ZombieSpawner spawner;
+
+    public static int NUM_RAND_ZOMBIES = 4;
 
 	// Use this for initialization
 	void Start () {
+        spawner = GameObject.Find("/ZombieSpawner").GetComponent<ZombieSpawner>();
 	}
 	
 	// Update is called once per frame
@@ -18,7 +22,15 @@ public class UpdateNumberHandler : MonoBehaviour {
 	}
 
 	public void UpdateNumbers(int updateNumber) {
-		string url = "http://192.81.208.150/updateNumbers/" + updateNumber;
+        // remove all zombies
+        GameObject[] zombies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        for (int i = 0; i < zombies.Length; i++)
+        {
+            Destroy(zombies[i]);
+        }
+
+        string url = "http://192.81.208.150/updateNumbers/" + updateNumber;
 		WWW www = new WWW (url);
 		StartCoroutine(WaitForRequest(www));
 	}
@@ -39,7 +51,8 @@ public class UpdateNumberHandler : MonoBehaviour {
 			randomNum [i] = data ["randoNums"] [i].AsInt;
 		}
 
-		print ();
+        // call to spawn the zombies (include one more than the array count)!
+        spawner.Spawn(arrCount + 1);
 	}
 
 	void print() {

@@ -20,10 +20,10 @@ public class TargetEquation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         GameObject obj = GameObject.Find("/Canvas/Health Bar");
-        //numHandeler =  GameObject.Find("/UpdateNumberHandeler").GetComponent<UpdateNumberHandler>();
         bar = obj.GetComponent<BarScript>();
         obj = GameObject.Find("/UpdateNumberHandler");
         numHandler = obj.GetComponent<UpdateNumberHandler>();
+        textField = GameObject.Find("/Canvas/Text").GetComponent<Text>();
         textField.text = " ";
         /*//
         strings = new string[3];
@@ -33,15 +33,32 @@ public class TargetEquation : MonoBehaviour {
         cycleCount = 0;
         index = 0;
         //*/
-        numHandler.UpdateNumbers(4);        
-	}
+
+        // update the number equation
+        numHandler.UpdateNumbers(UpdateNumberHandler.NUM_RAND_ZOMBIES);
+        Debug.Log("Update Numbers from health!");
+    }
 	
 	// Update is called once per frame
 	void Update () {
         if ( !bar.IsGameOver() )
+        {
             textField.text = numHandler.term1 + " + " + numHandler.term2 + " = ?";
+        }
         else
+        {
             textField.text = "Game Over";
+
+            // destroy all zombies
+            // remove all zombies
+            GameObject[] zombies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            for (int i = 0; i < zombies.Length; i++)
+            {
+                Destroy(zombies[i]);
+            }
+        }
+            
 	    /*//
         if (cycleCount >= refreshRate)
         {
