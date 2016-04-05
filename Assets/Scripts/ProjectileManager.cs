@@ -17,7 +17,7 @@ public class ProjectileManager : MonoBehaviour {
 	void Update () {
 		timer += Time.deltaTime;
 
-		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets)
+		if((Input.GetButton ("Fire1") || Cardboard.SDK.Triggered) && timer >= timeBetweenBullets)
 		{
 			Shoot ();
 		}
