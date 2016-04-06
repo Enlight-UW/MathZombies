@@ -30,7 +30,7 @@ public class BarScript : MonoBehaviour {
             DamagePlayer();
 
 
-        if ( gameOver && Input.GetKeyDown(KeyCode.Return) )
+		if ( gameOver && (Input.GetKeyDown(KeyCode.Return) || Cardboard.SDK.Triggered) )
             Restart();
 	}
 
