@@ -31,7 +31,7 @@ using System.Collections;
 /// This class is expected to be inherited by pointers responding to the user's
 /// looking at objects in the scene by the movement of their head. For example,
 /// see the CardboardReticle class.
-public interface ICardboardPointer {
+public interface ICardboardGazePointer {
   /// This is called when the 'BaseInputModule' system should be enabled.
   void OnGazeEnabled();
   /// This is called when the 'BaseInputModule' system should be disabled.
@@ -43,7 +43,8 @@ public interface ICardboardPointer {
   /// The camera is the event camera, the target is the object
   /// the user is looking at, and the intersectionPosition is the intersection
   /// point of the ray sent from the camera on the object.
-  void OnGazeStart(Camera camera, GameObject targetObject, Vector3 intersectionPosition);
+  void OnGazeStart(Camera camera, GameObject targetObject, Vector3 intersectionPosition,
+                   bool isInteractive);
 
   /// Called every frame the user is still looking at a valid GameObject. This
   /// can be a 3D or UI element.
@@ -51,7 +52,8 @@ public interface ICardboardPointer {
   /// The camera is the event camera, the target is the object the user is
   /// looking at, and the intersectionPosition is the intersection point of the
   /// ray sent from the camera on the object.
-  void OnGazeStay(Camera camera, GameObject targetObject, Vector3 intersectionPosition);
+  void OnGazeStay(Camera camera, GameObject targetObject, Vector3 intersectionPosition,
+                  bool isInteractive);
 
   /// Called when the user's look no longer intersects an object previously
   /// intersected with a ray projected from the camera.
@@ -69,4 +71,12 @@ public interface ICardboardPointer {
   /// Called when the Cardboard trigger is finished. This is practically when
   /// the user releases the trigger.
   void OnGazeTriggerEnd(Camera camera);
+
+  /// Return the radius of the gaze pointer. This is used when searching for
+  /// valid gaze targets. If a radius is 0, the CardboardGaze will use a ray
+  /// to find a valid gaze target. Otherwise it will use a SphereCast.
+  /// The *innerRadius* is used for finding new targets while the *outerRadius*
+  /// is used to see if you are still nearby the object currently looked at
+  /// to avoid a flickering effect when just at the border of the intersection.
+  void GetPointerRadius(out float innerRadius, out float outerRadius);
 }

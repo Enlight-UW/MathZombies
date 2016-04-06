@@ -12,7 +12,7 @@ public class ZombieCollision : MonoBehaviour {
     // Use this for initialization
     void Start () {
         updateNumHandler = GameObject.Find("/UpdateNumberHandler").GetComponent<UpdateNumberHandler>();
-        health = GameObject.Find("/Canvas/Health Bar").GetComponent<BarScript>();
+        health = GameObject.Find("/CardboardMain/Head/Canvas/Health Bar").GetComponent<BarScript>();
     }
 		
 	// Update is called once per frame

@@ -9,6 +9,7 @@ public class ProjectileAI : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+        this.gameObject.transform.Rotate(new Vector3(1, 0, 0), 90.0f);
 		GetComponent<Rigidbody>().AddForce(gameObject.transform.up * speed);
 	}
 	

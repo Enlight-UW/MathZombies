@@ -7,9 +7,6 @@ public class ZombieSpawner : MonoBehaviour {
     public GameObject zombie;
     public UpdateNumberHandler updateNumHandler;
 
-    // random number generator
-    Random rnd;
-
     // starting position of the first zombie
     public Vector3 pos;
 
@@ -21,7 +18,6 @@ public class ZombieSpawner : MonoBehaviour {
         pos = new Vector3(0, 0, LENGTH_AWAY_FROM_CAMERA);
 
         updateNumHandler = GameObject.Find("/UpdateNumberHandler").GetComponent<UpdateNumberHandler>();
-        rnd = new Random();
 
         // make this depend on if the zombie has hit the player OR if a player has killed the right zombie
         //InvokeRepeating("Spawn", 0, spawnTime);

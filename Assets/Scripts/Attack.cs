@@ -17,8 +17,8 @@ public class Attack : MonoBehaviour {
     // Use this for initialization
     void Start () {
         updateNumHandler = GameObject.Find("/UpdateNumberHandler").GetComponent<UpdateNumberHandler>();
-        health = GameObject.Find("/Canvas/Health Bar").GetComponent<BarScript>();
-		score = GameObject.Find ("/Canvas/Score").GetComponent<Score>();
+        health = GameObject.Find("/CardboardMain/Head/Canvas/Health Bar").GetComponent<BarScript>();
+		score = GameObject.Find ("/CardboardMain/Head/Canvas/Score").GetComponent<Score>();
     }
 	
 	// Update is called once per frame
