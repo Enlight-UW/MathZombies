@@ -19,11 +19,11 @@ public class TargetEquation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        GameObject obj = GameObject.Find("/CardboardMain/Head/Canvas/Health Bar");
+        GameObject obj = GameObject.Find("/CardboardMain/Head/Main Camera/Canvas/Health Bar");
         bar = obj.GetComponent<BarScript>();
         obj = GameObject.Find("/UpdateNumberHandler");
         numHandler = obj.GetComponent<UpdateNumberHandler>();
-        textField = GameObject.Find("/CardboardMain/Head/Canvas/Text").GetComponent<Text>();
+        textField = GameObject.Find("/CardboardMain/Head/Main Camera/Canvas/Text").GetComponent<Text>();
         textField.text = " ";
         /*//
         strings = new string[3];
