@@ -14,11 +14,17 @@ public class Attack : MonoBehaviour {
 	// update score
 	Score score;
 
+	private AudioSource correctZombie;
+	private AudioSource wrongZombie;
+
     // Use this for initialization
     void Start () {
         updateNumHandler = GameObject.Find("/UpdateNumberHandler").GetComponent<UpdateNumberHandler>();
         health = GameObject.Find("/CardboardMain/Head/Main Camera/Canvas/Health Bar").GetComponent<BarScript>();
 		score = GameObject.Find ("/CardboardMain/Head/Main Camera/Canvas/Score").GetComponent<Score>();
+
+		correctZombie = GameObject.Find ("/AllZombiesDie").GetComponent<AudioSource> ();
+		wrongZombie = GameObject.Find ("/ZombieDie").GetComponent<AudioSource> ();
     }
 	
 	// Update is called once per frame
@@ -34,6 +40,7 @@ public class Attack : MonoBehaviour {
 			// if correct zombie is checked
 			if(Int32.Parse(other.gameObject.transform.Find("Body/Text").GetComponent<TextMesh>().text) == updateNumHandler.sum)
             {
+				correctZombie.Play ();
 				// find how many zombies are left
 				GameObject[] zombies = GameObject.FindGameObjectsWithTag("Enemy");
 				score.UpdateScore(zombies.Length * 2);
@@ -45,6 +52,7 @@ public class Attack : MonoBehaviour {
             // penalize for getting the incorrect answer
             else
             {
+				wrongZombie.Play ();
                 Destroy(other.gameObject);
 
                 // damage player

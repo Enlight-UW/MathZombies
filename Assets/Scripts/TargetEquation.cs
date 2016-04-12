@@ -16,7 +16,6 @@ public class TargetEquation : MonoBehaviour {
 	private UpdateNumberHandler numHandler;
     private BarScript bar;
     
-
 	// Use this for initialization
 	void Start () {
         GameObject obj = GameObject.Find("/CardboardMain/Head/Main Camera/Canvas/Health Bar");

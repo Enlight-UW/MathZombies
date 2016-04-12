@@ -9,6 +9,8 @@ public class BarScript : MonoBehaviour {
     private int healthMax;      // Player's maximum hp
     private bool gameOver;      // Whether the player has lost
 
+	private AudioSource takeDamage;
+
     [SerializeField]
     private Image content;
 
@@ -18,6 +20,8 @@ public class BarScript : MonoBehaviour {
         fillAmount = 1;
         healthMax = 5;
         health = healthMax;
+
+		takeDamage = GameObject.Find ("/TakeDamage").GetComponent<AudioSource> ();
     }
 	
 	// Update is called once per frame
@@ -42,6 +46,7 @@ public class BarScript : MonoBehaviour {
     }
     public void DamagePlayer()
     {
+		takeDamage.Play ();
         health--;
     }
 
