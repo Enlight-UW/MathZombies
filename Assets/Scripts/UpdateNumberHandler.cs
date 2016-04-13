@@ -29,7 +29,7 @@ public class UpdateNumberHandler : MonoBehaviour {
 
 		if (counter >= 100 && firstTime) {
 			counter = 0;
-
+			GetNumbers ();
 		}
 	}
 
