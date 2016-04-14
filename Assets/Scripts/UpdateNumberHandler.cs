@@ -27,7 +27,7 @@ public class UpdateNumberHandler : MonoBehaviour {
 	void Update () {
 		counter++;
 
-		if (counter >= 100 && firstTime) {
+		if (counter >= 50 && firstTime) {
 			counter = 0;
 			GetNumbers ();
 		}
@@ -40,22 +40,7 @@ public class UpdateNumberHandler : MonoBehaviour {
 	}
 
 	public void UpdateNumbers(int updateNumber) {
-        // remove all zombies
-        GameObject[] zombies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        for (int i = 0; i < zombies.Length; i++)
-        {
-            Destroy(zombies[i]);
-        }
-
-        // remove all current arrows
-        GameObject[] arrows = GameObject.FindGameObjectsWithTag("Arrow");
-
-        for (int i = 0; i < arrows.Length; i++)
-        {
-            Destroy(arrows[i]);
-        }
-
+		DestroyAllObjects ();
         string url = "http://192.81.208.150/updateNumbers/" + updateNumber;
 		WWW www = new WWW (url);
 		StartCoroutine(WaitForRequest(www));
@@ -67,19 +52,7 @@ public class UpdateNumberHandler : MonoBehaviour {
 
 		// always assume no errors
 		var data = JSON.Parse (www.text);
-		term1 = data ["term1"].AsInt;
-		term2 = data ["term2"].AsInt;
-		sum = data ["sum"].AsInt;
-
-		int arrCount = data ["randoNums"].AsArray.Count;
-		randomNum = new int[arrCount];
-		for (int i = 0; i < arrCount; i++) {
-			randomNum [i] = data ["randoNums"] [i].AsInt;
-		}
-
-        // call to spawn the zombies (include one more than the array count)!
-        spawner.Spawn(arrCount + 1);
-
+		ParseJSONAndSpawnZombies (data);
 		firstTime = true;
 	}
 
@@ -92,7 +65,8 @@ public class UpdateNumberHandler : MonoBehaviour {
 		var data = JSON.Parse (www.text);
 		if (term1 != data ["term1"].AsInt || term2 != data ["term2"].AsInt) {
 			somebodyElseKilledTheZombie.Play ();
-			UpdateNumbers(NUM_RAND_ZOMBIES);
+			DestroyAllObjects ();
+			ParseJSONAndSpawnZombies (data);
 		}
 
 	}
@@ -110,5 +84,38 @@ public class UpdateNumberHandler : MonoBehaviour {
 		arr += "]";
 
 		Debug.Log (arr);
+	}
+
+	void DestroyAllObjects() {
+		// remove all zombies
+		GameObject[] zombies = GameObject.FindGameObjectsWithTag("Enemy");
+
+		for (int i = 0; i < zombies.Length; i++)
+		{
+			Destroy(zombies[i]);
+		}
+
+		// remove all current arrows
+		GameObject[] arrows = GameObject.FindGameObjectsWithTag("Arrow");
+
+		for (int i = 0; i < arrows.Length; i++)
+		{
+			Destroy(arrows[i]);
+		}
+	}
+
+	void ParseJSONAndSpawnZombies(JSONNode data) {
+		term1 = data ["term1"].AsInt;
+		term2 = data ["term2"].AsInt;
+		sum = data ["sum"].AsInt;
+
+		int arrCount = data ["randoNums"].AsArray.Count;
+		randomNum = new int[arrCount];
+		for (int i = 0; i < arrCount; i++) {
+			randomNum [i] = data ["randoNums"] [i].AsInt;
+		}
+
+		// call to spawn the zombies (include one more than the array count)!
+		spawner.Spawn(arrCount + 1);
 	}
 }
